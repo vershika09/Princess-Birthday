@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>LiL Cookie Birthday</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Times New Roman", serif;
+            overflow: hidden;
+        }
+
+        #page1 {
+    background: beige;
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#surpriseButton {
+    font-family: "Times New Roman", serif;
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+
+    padding: 20px 45px;
+
+    background: #f5f5f5;
+
+    border: 2px solid black;
+    border-radius: 5px;
+
+    box-shadow:
+        0 8px 0 #777,
+        0 12px 20px rgba(0,0,0,0.3);
+
+    cursor: pointer;
+
+    transition: all 0.15s ease;
+}
+
+#surpriseButton:active {
+    transform: translateY(8px);
+
+    box-shadow:
+        0 2px 0 #777,
+        0 5px 10px rgba(0,0,0,0.3);
+}
+
+#page1::before,
+#page1::after {
+    content: "";
+    position: absolute;
+
+    width: 100px;
+    height: 100px;
+
+    border-radius: 50%;
+
+    background: rgba(255, 220, 100, 0.8);
+
+    filter: blur(25px);
+
+    animation: glow 2s infinite alternate;
+}
+
+#page1::before {
+    top: 20px;
+    left: 20px;
+}
+
+#page1::after {
+    bottom: 20px;
+    right: 20px;
+}
+
+@keyframes glow {
+
+    from {
+        opacity: 0.4;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+
+}
+
+.flower {
+    position: absolute;
+
+    top: -50px;
+
+    font-size: 25px;
+
+    animation: fall linear forwards;
+
+    pointer-events: none;
+}
+
+@keyframes fall {
+
+    from {
+        transform:
+            translateY(0)
+            rotate(0deg);
+    }
+
+    to {
+        transform:
+            translateY(110vh)
+            rotate(360deg);
+    }
+
+}
+
+<--page 2--
+.page {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    display: none;
+}
+
+.page.active {
+    display: flex;
+}
+#page2 {
+    background: pink;
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup {
+    width: 320px;
+    min-height: 150px;
+
+    background: #f5d6d6;
+
+    border: 3px solid brown;
+    border-radius: 8px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+
+    box-shadow:
+        8px 8px 0 #8b5a5a,
+        12px 12px 20px rgba(0,0,0,0.3);
+
+    animation: floatingPopup 3s ease-in-out infinite;
+}
+
+.popup p {
+    font-family: "Times New Roman", serif;
+    font-size: 18px;
+    font-weight: bold;
+    color: brown;
+}
+
+@keyframes floatingPopup {
+
+    0% {
+        transform: translateX(-20px);
+    }
+
+    50% {
+        transform: translateX(20px);
+    }
+
+    100% {
+        transform: translateX(-20px);
+    }
+
+}
+
+.closeButton {
+    position: absolute;
+
+    top: 8px;
+    right: 8px;
+
+    width: 30px;
+    height: 30px;
+
+    background: white;
+
+    border: 2px solid brown;
+
+    font-family: "Times New Roman", serif;
+    font-size: 20px;
+    font-weight: bold;
+
+    box-shadow: 3px 3px 0 brown;
+
+    cursor: pointer;
+}
+
+.buttons {
+    margin-top: 50px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.buttons button {
+    width: 150px;
+    height: 50px;
+
+    background: #eeeeee;
+
+    border: 2px solid black;
+
+    font-family: "Times New Roman", serif;
+    font-size: 14px;
+    font-weight: bold;
+
+    box-shadow:
+        5px 5px 0 #555;
+
+    cursor: pointer;
+
+    transition: 0.15s;
+}
+
+.buttons button:active {
+    transform: translate(5px, 5px);
+
+    box-shadow:
+        1px 1px 0 #555;
+}
+
+
+
+    </style>
+</head>
+
+<body>
+
+    <--page 1--
+    <section id="page1" class="page active">
+
+        <h1>Lil Cookie's Birthday</h1>
+
+        <button id="surpriseButton">
+            SURPRISE
+        </button>
+
+        <section id="page1">
+    ...
+</section>
+
+
+<--paage  1--
+    <script>
+
+        const flowers = ["🌸", "🌷", "🌺", "🌼", "💮"];
+
+function createFlower() {
+
+    const flower = document.createElement("div");
+
+    flower.className = "flower";
+
+    flower.innerText =
+        flowers[Math.floor(Math.random() * flowers.length)];
+
+    flower.style.left =
+        Math.random() * 100 + "vw";
+
+    flower.style.animationDuration =
+        (4 + Math.random() * 5) + "s";
+
+    document.getElementById("page1").appendChild(flower);
+
+    setTimeout(() => {
+        flower.remove();
+    }, 9000);
+}
+
+setInterval(createFlower, 500);
+
+function showPage(pageID) {
+
+    document.querySelectorAll(".page").forEach(page => {
+        page.classList.remove("active");
+    });
+
+    document.getElementById(pageId).classList.add("active");
+}
+    document.getElementById("surpriseButton")
+    .addEventListener("click", function() {
+
+        showPage("page2");
+
+    });
+    </script>
+
+    
+<--page 2--
+    <section id="page2" class="page">
+
+    <div class="popup">
+
+        <button class="closeButton">×</button>
+
+        <p>You are my cutie</p>
+
+    </div>
+
+    <div class="buttons">
+
+        <button id="acceptButton">ACCEPT</button>
+
+        <button id="denyButton">DENY</button>
+
+    </div>
+
+</section>
+
+    <script>
+
+    const surpriseButton =
+        document.getElementById("surpriseButton");
+
+    const page1 =
+        document.getElementById("page1");
+
+    const page2 =
+        document.getElementById("page2");
+
+
+    surpriseButton.addEventListener("click", function() {
+
+        page1.classList.remove("active");
+
+        page2.classList.add("active");
+
+    });
+
+    </script>
+    
+</body>
+</html>
